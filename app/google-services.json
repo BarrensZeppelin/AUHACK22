@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "357963345296",
+    "project_id": "auhack22-705a1",
+    "storage_bucket": "auhack22-705a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357963345296:android:ecc0b96f0865fef39e1715",
+        "android_client_info": {
+          "package_name": "dk.smartrooms.auhack22"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357963345296-iv3qoql8h8vjh1ghs4apltf4ucgs71mh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvx_GIrkKIgZ8xOh3TT5xwXo1-chfR1v0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357963345296-iv3qoql8h8vjh1ghs4apltf4ucgs71mh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

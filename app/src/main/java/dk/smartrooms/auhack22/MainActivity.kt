@@ -1,4 +1,4 @@
-package com.example.auhack22
+package dk.smartrooms.auhack22
 
 import android.app.Activity
 import android.app.PendingIntent
@@ -15,6 +15,8 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 private const val TAG = "MyActivity"
@@ -22,15 +24,22 @@ private const val TAG = "MyActivity"
 class MainActivity : AppCompatActivity() {
     val MIME_TEXT_PLAIN = "text/plain"
     private var mNfcAdapter: NfcAdapter? = null
+    val db = Firebase.firestore
+
+    var radioGroup: RadioGroup? = null
+
+    val roomIds = arrayOf("break", "busy")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val room = findViewById<RadioGroup>(R.id.radioGroup)
-        room.setOnCheckedChangeListener { radioGroup, i ->
+        radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        /*
+        radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             Log.i(TAG, findViewById<RadioButton>(i).text.toString())
         }
+         */
 
         Log.i(TAG, "We're ready!")
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -40,6 +49,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
             return;
+        }
+
+        db.collection("rooms").get().addOnSuccessListener { result ->
+            for (document in result) {
+                Log.i(TAG, "${document.id} ${document["room"]}")
+            }
         }
     }
 
@@ -112,6 +127,14 @@ class MainActivity : AppCompatActivity() {
                 Log.w(TAG, "Unrecognised ID $id")
             } else {
                 Log.i(TAG, "Hello $name!")
+
+                val radioButtonID: Int = radioGroup!!.checkedRadioButtonId
+                val radioButton = findViewById<RadioButton>(radioButtonID)
+                val idx: Int = radioGroup!!.indexOfChild(radioButton)
+                db.collection("rooms").document(name)
+                    .set(mapOf("room" to roomIds[idx]))
+                    .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                    .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
             }
         } else super.onNewIntent(intent)
     }
