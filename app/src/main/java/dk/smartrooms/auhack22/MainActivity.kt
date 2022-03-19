@@ -2,6 +2,7 @@ package dk.smartrooms.auhack22
 
 import android.app.Activity
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_MUTABLE
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.IntentFilter.MalformedMimeTypeException
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(activity, javaClass).apply {
             addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(activity, 0, intent, 0)
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(activity, 0, intent, FLAG_MUTABLE)
         val ndef = IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED).apply {
             try {
                 addDataType("*/*")    /* Handles all MIME based dispatches.
