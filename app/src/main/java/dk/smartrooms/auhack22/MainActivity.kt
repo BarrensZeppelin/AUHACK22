@@ -20,22 +20,20 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
-private const val TAG = "MyActivity"
+private const val TAG = "AUHack22"
 
 class MainActivity : AppCompatActivity() {
-    val MIME_TEXT_PLAIN = "text/plain"
     private var mNfcAdapter: NfcAdapter? = null
-    val db = Firebase.firestore
+    private lateinit var radioGroup: RadioGroup
 
-    var radioGroup: RadioGroup? = null
-
-    val roomIds = arrayOf("break", "busy")
+    private val db = Firebase.firestore
+    private val roomIds = arrayOf("break", "busy")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        radioGroup = findViewById(R.id.radioGroup)
         /*
         radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             Log.i(TAG, findViewById<RadioButton>(i).text.toString())
@@ -108,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         adapter.enableForegroundDispatch(activity, pendingIntent, filters, techs)
     }
 
-    val idMap = mapOf(114 to "Oskar", 110 to "Camilla", 106 to "Unknown 2")
+    val idMap = mapOf(114 to "Oskar", 110 to "Camilla", 106 to "Dennis")
 
     override fun onNewIntent(intent: Intent) {
         if (NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action) {
