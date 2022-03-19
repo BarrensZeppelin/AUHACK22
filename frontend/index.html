@@ -27,40 +27,35 @@
           
           
             // Your web app's Firebase configuration
-          
+
             const firebaseConfig = {
-          
-              apiKey: "AIzaSyAHA0Pxs-6YeUuhQp1DuKZDfZ93mbC5CvY",
-          
-              authDomain: "auhack22-705a1.firebaseapp.com",
-          
-              projectId: "auhack22-705a1",
-          
-              storageBucket: "auhack22-705a1.appspot.com",
-          
-              messagingSenderId: "357963345296",
-          
-              appId: "1:357963345296:web:b4c7248b92cb75ac9e1715"
-          
+                apiKey: "AIzaSyAHA0Pxs-6YeUuhQp1DuKZDfZ93mbC5CvY",
+                authDomain: "auhack22-705a1.firebaseapp.com",
+                projectId: "auhack22-705a1",
+                storageBucket: "auhack22-705a1.appspot.com",
+                messagingSenderId: "357963345296",
+                appId: "1:357963345296:web:b4c7248b92cb75ac9e1715"
             };
+
+            const busyEl = document.getElementById('busy');
+            const breakEl = document.getElementById('break');
           
             function redraw(peopleInBreakRoom, peopleInBusyRoom){
-              document.getElementById('busy').innerHTML = "<p>Busy room</p>";
-              document.getElementById('break').innerHTML = "<p>Break room</p>";
-              document.getElementById('busy').innerHTML += "<div class='s'>";
-              document.getElementById('break').innerHTML += "<div>";
+              busyEl.innerHTML = "<p class='room-title'>Quiet zone</p>";
+              breakEl.innerHTML = "<p class='room-title'>Social zone</p>";
+              busyEl.innerHTML += "<div class='s'>";
+              breakEl.innerHTML += "<div>";
               for (let item of peopleInBreakRoom.keys()) {
-                document.getElementById('break').innerHTML += `<div class="profile"> <span>${item}</span> <br> <div class="picture ${item}" ></div> </div>`;
+                breakEl.innerHTML += `<div class="profile"> <span>${item}</span> <br> <div class="picture ${item}" ></div> </div>`;
                 console.log(item)
               }
               for (let item of peopleInBusyRoom.keys()) {
-                document.getElementById('busy').innerHTML +=  `<div class="profile"> <span>${item}</span> <br> <div class="picture ${item}" ></div> </div>`;
+                busyEl.innerHTML +=  `<div class="profile"> <span>${item}</span> <br> <div class="picture ${item}" ></div> </div>`;
                 console.log(item)
               }
 
-              document.getElementById('busy').innerHTML += "</div>";
-              document.getElementById('break').innerHTML += "</div>";
-
+              busyEl.innerHTML += "</div>";
+              breakEl.innerHTML += "</div>";
             }
 
             // Initialize Firebase
@@ -106,9 +101,6 @@
             redraw(peopleInBreakRoom, peopleInBusyRoom)
 
             });
-
-
-
     </script>
   </body>
-</html> 
+</html>
