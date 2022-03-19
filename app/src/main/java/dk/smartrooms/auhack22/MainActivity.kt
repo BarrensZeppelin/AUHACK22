@@ -12,6 +12,7 @@ import android.nfc.Tag
 import android.nfc.tech.*
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -27,11 +28,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var radioGroup: RadioGroup
 
     private val db = Firebase.firestore
-    private val roomIds = arrayOf("break", "busy")
+    private val roomIds = arrayOf("break", "busy", "away")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         radioGroup = findViewById(R.id.radioGroup)
         /*
@@ -127,9 +130,9 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Log.i(TAG, "Hello $name!")
 
-                val radioButtonID: Int = radioGroup!!.checkedRadioButtonId
+                val radioButtonID: Int = radioGroup.checkedRadioButtonId
                 val radioButton = findViewById<RadioButton>(radioButtonID)
-                val idx: Int = radioGroup!!.indexOfChild(radioButton)
+                val idx: Int = radioGroup.indexOfChild(radioButton)
                 db.collection("rooms").document(name)
                     .set(mapOf("room" to roomIds[idx]))
                     .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }

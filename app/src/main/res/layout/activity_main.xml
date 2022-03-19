@@ -18,8 +18,8 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="135dp"
+        android:layout_height="136dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +39,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Busy room"
+            tools:layout_editor_absoluteX="125dp"
+            tools:layout_editor_absoluteY="128dp" />
+
+        <RadioButton
+            android:id="@+id/awayRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Out of office"
             tools:layout_editor_absoluteX="125dp"
             tools:layout_editor_absoluteY="128dp" />
     </RadioGroup>
