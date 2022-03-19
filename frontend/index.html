@@ -50,11 +50,11 @@
               document.getElementById('busy').innerHTML += "<div class='s'>";
               document.getElementById('break').innerHTML += "<div>";
               for (let item of peopleInBreakRoom.keys()) {
-                document.getElementById('break').innerHTML += `<div class="profile">${item} <br> <div class="picture ${item}" ></div> </div>`;
+                document.getElementById('break').innerHTML += `<div class="profile"> <span>${item}</span> <br> <div class="picture ${item}" ></div> </div>`;
                 console.log(item)
               }
               for (let item of peopleInBusyRoom.keys()) {
-                document.getElementById('busy').innerHTML +=  `<div class="profile">${item} <br> <div class="picture ${item}" ></div> </div>`;
+                document.getElementById('busy').innerHTML +=  `<div class="profile"> <span>${item}</span> <br> <div class="picture ${item}" ></div> </div>`;
                 console.log(item)
               }
 
